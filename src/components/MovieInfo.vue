@@ -3,13 +3,13 @@
   import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from "@/api/config";
 
   const props = defineProps(["movie"]);
+  const backgroundCss = props.movie.backdrop_path
+    ? `background-image: url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${props.movie.backdrop_path});`
+    : "background-color: var(--dark-grey);";
 </script>
 
 <template>
-  <div
-    class="wrapper"
-    :style="`background-image: url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${props.movie.backdrop_path});`"
-  >
+  <div class="wrapper" :style="backgroundCss">
     <div class="content">
       <Thumbnail
         :movieId="props.movie.id"
@@ -26,7 +26,7 @@
         <h3>PLOT</h3>
         <p>{{ props.movie.overview }}</p>
 
-        <div class="rating-directors">
+        <div class="rating-director">
           <div>
             <h3>RATING</h3>
             <div class="score">{{ props.movie.vote_average }}</div>
@@ -88,7 +88,6 @@
       display: flex;
       justify-content: flex-start;
     }
-
     .score {
       display: flex;
       align-items: center;
@@ -109,45 +108,8 @@
     }
     h1 {
       @media screen and (max-width: 768px) {
-        font-size: var(--font-big);
+        font-size: var(--fontBig);
       }
-    }
-  }
-
-  .text .rating-directors {
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  .text .score {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 35px;
-    height: 35px;
-    background-color: #fff;
-    color: #000;
-    font-weight: 800;
-    border-radius: 50%;
-    margin: 0;
-  }
-
-  .text .director {
-    margin: 0 0 0 40px;
-  }
-
-  .director p {
-    margin: 0;
-  }
-
-  @media (max-width: 768px) {
-    .content {
-      display: block;
-      max-height: none;
-    }
-
-    h1 {
-      font-size: var(--font-big);
     }
   }
 </style>

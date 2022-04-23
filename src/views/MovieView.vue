@@ -1,7 +1,7 @@
 <script setup>
   // vue
-  import { ref, onMounted, watch } from "vue";
-  import { useRoute, useRouter } from "vue-router";
+  import { ref, watch } from "vue";
+  import { useRoute } from "vue-router";
 
   // api
   import API from "@/api/API";
