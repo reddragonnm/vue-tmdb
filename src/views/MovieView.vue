@@ -1,8 +1,10 @@
 <script setup>
-  import { ref, onMounted } from "vue";
+  import { ref, watchEffect } from "vue";
+  import { useRoute } from "vue-router";
 
   import API from "@/api/API";
   import { IMAGE_BASE_URL, POSTER_SIZE } from "@/api/config";
+  import { isPersistedState } from "@/api/helpers";
 
   import Spinner from "@/components/Spinner.vue";
   import BreadCrumb from "@/components/BreadCrumb.vue";
@@ -13,19 +15,22 @@
 
   import noImg from "@/assets/no_image.jpg";
 
-  const props = defineProps({
-    movieId: {
-      type: String,
-      required: true,
-    },
-  });
-
+  const route = useRoute();
   const movie = ref({});
   const loading = ref(true);
 
   const fetchMovie = async (movieId) => {
+    if (!movieId) return;
+
     try {
       loading.value = true;
+
+      const sessionState = isPersistedState(`movie-${movieId}`);
+      if (sessionState) {
+        movie.value = sessionState;
+        loading.value = false;
+        return;
+      }
 
       const movieData = await API.fetchMovie(movieId);
       const credits = await API.fetchCredits(movieId);
@@ -40,13 +45,14 @@
       };
 
       loading.value = false;
+      sessionStorage.setItem(`movie-${movieId}`, JSON.stringify(movie.value));
     } catch (err) {
       console.error(err);
     }
   };
 
-  onMounted(() => {
-    fetchMovie(props.movieId);
+  watchEffect(() => {
+    fetchMovie(route.params.movieId);
   });
 </script>
 

@@ -29,17 +29,21 @@
   const searchTerm = ref("");
 
   // component methods
-  const fetchMovies = async (page, searchTerm = "") => {
+  const fetchMovies = async (page, search = "") => {
     try {
       loading.value = true;
 
-      const data = await API.fetchMovies(searchTerm, page);
+      const data = await API.fetchMovies(search, page);
       state.value = {
         ...data,
         results: [...state.value.results, ...data.results],
       };
 
       loading.value = false;
+
+      if (!search) {
+        sessionStorage.setItem("home", JSON.stringify(state.value));
+      }
     } catch (err) {
       console.error(err);
     }
@@ -53,6 +57,11 @@
 
   // lifecycle methods
   onMounted(() => {
+    const homeState = isPersistedState("home");
+    if (homeState) {
+      state.value = homeState;
+      return;
+    }
     fetchMovies(1);
   });
 </script>
