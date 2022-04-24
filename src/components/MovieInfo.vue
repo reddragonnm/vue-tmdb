@@ -13,7 +13,7 @@
   // we have to update css on image change (the page is changing)
   const backgroundCss = computed(() =>
     props.movie.backdrop_path
-      ? `url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${props.movie.backdrop_path})`
+      ? `url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${props.movie.backdrop_path}) var(--dark-grey)`
       : "var(--dark-grey)"
   );
 </script>
