@@ -13,6 +13,9 @@
   import MovieInfo from "@/components/MovieInfo.vue";
   import MovieInfoBar from "@/components/MovieInfoBar.vue";
   import Grid from "@/components/Grid.vue";
+  import Actor from "@/components/Actor.vue";
+
+  import noImg from "@/assets/no_image.jpg";
 
   // component states
   const route = useRoute();
@@ -56,5 +59,19 @@
       :budget="movie.budget"
       :revenue="movie.revenue"
     />
+
+    <Grid header="Actors">
+      <Actor
+        v-for="actor in movie.actors"
+        :key="actor.credit_id"
+        :name="actor.name"
+        :character="actor.character"
+        :imageUrl="
+          actor.profile_path
+            ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
+            : noImg
+        "
+      />
+    </Grid>
   </div>
 </template>
