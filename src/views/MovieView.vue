@@ -1,13 +1,9 @@
 <script setup>
-  // vue
-  import { ref, watch } from "vue";
-  import { useRoute, useRouter } from "vue-router";
+  import { ref, onMounted } from "vue";
 
-  // api
   import API from "@/api/API";
   import { IMAGE_BASE_URL, POSTER_SIZE } from "@/api/config";
 
-  // components
   import Spinner from "@/components/Spinner.vue";
   import BreadCrumb from "@/components/BreadCrumb.vue";
   import MovieInfo from "@/components/MovieInfo.vue";
@@ -17,14 +13,16 @@
 
   import noImg from "@/assets/no_image.jpg";
 
-  const route = useRoute();
-  const router = useRouter();
+  const props = defineProps({
+    movieId: {
+      type: String,
+      required: true,
+    },
+  });
 
-  // component states
   const movie = ref({});
-  const loading = ref(false);
+  const loading = ref(true);
 
-  // component methods
   const fetchMovie = async (movieId) => {
     try {
       loading.value = true;
@@ -43,12 +41,13 @@
 
       loading.value = false;
     } catch (err) {
-      router.push({ name: "not-found" });
+      console.error(err);
     }
   };
 
-  // lifecycle methods
-  watch(() => route.params.movieId, fetchMovie(route.params.movieId));
+  onMounted(() => {
+    fetchMovie(props.movieId);
+  });
 </script>
 
 <template>

@@ -18,6 +18,7 @@ const router = createRouter({
       path: "/:movieId",
       name: "movie",
       component: MovieView,
+      props: true,
     },
 
     {

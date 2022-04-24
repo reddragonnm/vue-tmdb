@@ -25,7 +25,7 @@
 
   // component states
   const state = ref(initalState);
-  const loading = ref(false);
+  const loading = ref(true);
   const searchTerm = ref("");
 
   // component methods
