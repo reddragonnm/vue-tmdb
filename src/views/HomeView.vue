@@ -40,10 +40,6 @@
       };
 
       loading.value = false;
-
-      if (!searchTerm) {
-        sessionStorage.setItem("homeState", JSON.stringify(state.value));
-      }
     } catch (err) {
       console.error(err);
     }
@@ -57,12 +53,6 @@
 
   // lifecycle methods
   onMounted(() => {
-    const sessionState = isPersistedState("homeState");
-    if (sessionState) {
-      state.value = sessionState;
-      return;
-    }
-
     fetchMovies(1);
   });
 </script>

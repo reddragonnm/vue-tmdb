@@ -41,6 +41,7 @@
 
       loading.value = false;
     } catch (err) {
+      console.log("error");
       console.error(err);
     }
   };
