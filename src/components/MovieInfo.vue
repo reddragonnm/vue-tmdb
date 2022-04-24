@@ -4,12 +4,12 @@
 
   const props = defineProps(["movie"]);
   const backgroundCss = props.movie.backdrop_path
-    ? `background-image: url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${props.movie.backdrop_path});`
-    : "background-color: var(--dark-grey);";
+    ? `url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${props.movie.backdrop_path})`
+    : "var(--dark-grey)";
 </script>
 
 <template>
-  <div class="wrapper" :style="backgroundCss">
+  <div class="wrapper">
     <div class="content">
       <Thumbnail
         :movieId="props.movie.id"
@@ -50,6 +50,7 @@
 
 <style scoped lang="scss">
   .wrapper {
+    background: v-bind(backgroundCss) no-repeat;
     background-size: cover;
     background-position: center;
     padding: 40px 20px;

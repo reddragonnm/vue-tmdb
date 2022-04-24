@@ -1,9 +1,11 @@
 <script setup>
   const props = defineProps(["image", "title", "text", "color"]);
+
+  const bgImgCss = `url(${props.image})`;
 </script>
 
 <template>
-  <div class="wrapper" :style="`background-image: url(${props.image});`">
+  <div class="wrapper">
     <div class="content">
       <div class="text">
         <h1>{{ props.title }}</h1>
@@ -20,7 +22,7 @@
         rgba(0, 0, 0, 0) 41%,
         rgba(0, 0, 0, 0.65) 100%
       ),
-      var(--dark-grey) no-repeat;
+      v-bind(bgImgCss) var(--dark-grey) no-repeat;
 
     background-size: cover;
     background-position: center;

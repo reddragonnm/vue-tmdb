@@ -35,8 +35,6 @@
         directors,
       };
 
-      console.log(state.value);
-
       loading.value = false;
     } catch (err) {
       console.error(err);
