@@ -1,6 +1,6 @@
 <script setup>
   // vue
-  import { ref, onMounted, watch } from "vue";
+  import { ref, onMounted } from "vue";
 
   // api
   import API from "@/api/API";
