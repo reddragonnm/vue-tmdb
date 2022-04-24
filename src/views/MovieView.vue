@@ -1,7 +1,7 @@
 <script setup>
   // vue
   import { ref, watch } from "vue";
-  import { useRoute } from "vue-router";
+  import { useRoute, useRouter } from "vue-router";
 
   // api
   import API from "@/api/API";
@@ -17,8 +17,10 @@
 
   import noImg from "@/assets/no_image.jpg";
 
-  // component states
   const route = useRoute();
+  const router = useRouter();
+
+  // component states
   const movie = ref({});
   const loading = ref(false);
 
@@ -41,8 +43,7 @@
 
       loading.value = false;
     } catch (err) {
-      console.log("error");
-      console.error(err);
+      router.push({ name: "not-found" });
     }
   };
 
