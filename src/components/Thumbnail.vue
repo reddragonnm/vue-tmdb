@@ -9,7 +9,7 @@
     },
 
     movieId: {
-      type: String,
+      type: Number,
       required: true,
     },
 

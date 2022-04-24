@@ -1,10 +1,11 @@
 <script setup>
   // vue
-  import { ref, onMounted } from "vue";
+  import { ref, onMounted, watch } from "vue";
 
   // api
   import API from "@/api/API";
   import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from "@/api/config";
+  import { isPersistedState } from "@/api/helpers";
 
   // components
   import HeroImage from "@/components/HeroImage.vue";
@@ -39,6 +40,10 @@
       };
 
       loading.value = false;
+
+      if (!searchTerm) {
+        sessionStorage.setItem("homeState", JSON.stringify(state.value));
+      }
     } catch (err) {
       console.error(err);
     }
@@ -52,6 +57,12 @@
 
   // lifecycle methods
   onMounted(() => {
+    const sessionState = isPersistedState("homeState");
+    if (sessionState) {
+      state.value = sessionState;
+      return;
+    }
+
     fetchMovies(1);
   });
 </script>
