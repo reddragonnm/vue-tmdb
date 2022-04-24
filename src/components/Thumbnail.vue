@@ -1,7 +1,23 @@
 <script setup>
   import { RouterLink } from "vue-router";
   import noImage from "@/assets/no_image.jpg";
-  const props = defineProps(["image", "movieId", "clickable"]);
+
+  const props = defineProps({
+    image: {
+      type: String,
+      default: noImage,
+    },
+
+    movieId: {
+      type: String,
+      required: true,
+    },
+
+    clickable: {
+      type: Boolean,
+      default: true,
+    },
+  });
 </script>
 
 <template>
@@ -25,10 +41,6 @@
     border-radius: 20px;
     animation: animateMovieThumb 0.5s;
 
-    :hover {
-      opacity: 0.8;
-    }
-
     @keyframes animateMovieThumb {
       from {
         opacity: 0;
@@ -36,6 +48,10 @@
       to {
         opacity: 1;
       }
+    }
+
+    &:hover {
+      opacity: 0.8;
     }
   }
 </style>

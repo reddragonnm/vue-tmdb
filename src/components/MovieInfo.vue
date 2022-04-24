@@ -2,7 +2,13 @@
   import Thumbnail from "./Thumbnail.vue";
   import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from "@/api/config";
 
-  const props = defineProps(["movie"]);
+  const props = defineProps({
+    movie: {
+      type: Object,
+      required: true,
+    },
+  });
+
   const backgroundCss = props.movie.backdrop_path
     ? `url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${props.movie.backdrop_path})`
     : "var(--dark-grey)";

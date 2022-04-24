@@ -62,17 +62,13 @@
       height: 40px;
       color: var(--white);
 
-      :focus {
+      &:focus {
         outline: none;
       }
 
       @media screen and (max-width: 720px) {
         font-size: 28px;
       }
-    }
-
-    :focus {
-      outline: none;
     }
   }
 </style>

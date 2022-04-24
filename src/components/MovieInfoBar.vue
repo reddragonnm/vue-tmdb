@@ -1,6 +1,21 @@
 <script setup>
   import { calcTime, convertMoney } from "@/api/helpers";
-  const props = defineProps(["time", "budget", "revenue"]);
+  const props = defineProps({
+    time: {
+      type: Number,
+      required: true,
+    },
+
+    budget: {
+      type: Number,
+      required: true,
+    },
+
+    revenue: {
+      type: Number,
+      required: true,
+    },
+  });
 </script>
 
 <template>
@@ -45,11 +60,11 @@
       margin: 0 20px;
       flex: 1;
 
-      :first-child {
+      &:first-child {
         margin-left: 0;
       }
 
-      :last-child {
+      &:last-child {
         margin-right: 0;
       }
     }

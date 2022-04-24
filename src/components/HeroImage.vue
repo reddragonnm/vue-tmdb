@@ -1,5 +1,18 @@
 <script setup>
-  const props = defineProps(["image", "title", "text", "color"]);
+  const props = defineProps({
+    image: {
+      type: String,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    text: {
+      type: String,
+      default: "",
+    },
+  });
 
   const bgImgCss = `url(${props.image})`;
 </script>

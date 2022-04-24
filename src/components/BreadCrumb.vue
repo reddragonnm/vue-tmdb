@@ -1,7 +1,12 @@
 <script setup>
   import { RouterLink } from "vue-router";
 
-  const props = defineProps(["movieTitle"]);
+  const props = defineProps({
+    movieTitle: {
+      type: String,
+      required: true,
+    },
+  });
 </script>
 
 <template>

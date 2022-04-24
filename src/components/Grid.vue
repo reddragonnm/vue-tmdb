@@ -1,10 +1,15 @@
 <script setup>
-  const props = defineProps(["header", "children"]);
+  const props = defineProps({
+    header: {
+      type: String,
+      default: "",
+    },
+  });
 </script>
 
 <template>
   <div class="wrapper">
-    <h1>{{ props.header }}</h1>
+    <h1 v-if="props.header">{{ props.header }}</h1>
 
     <div class="content">
       <slot />

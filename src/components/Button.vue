@@ -1,6 +1,11 @@
 <script setup>
   const emit = defineEmits(["click"]);
-  const props = defineProps(["text"]);
+  const props = defineProps({
+    text: {
+      type: String,
+      required: true,
+    },
+  });
 </script>
 
 <template>
@@ -23,7 +28,7 @@
     outline: none;
     cursor: pointer;
 
-    :hover {
+    &:hover {
       opacity: 0.8;
     }
   }
