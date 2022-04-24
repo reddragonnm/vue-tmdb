@@ -60,6 +60,7 @@
     const homeState = isPersistedState("home");
     if (homeState) {
       state.value = homeState;
+      loading.value = false;
       return;
     }
     fetchMovies(1);
