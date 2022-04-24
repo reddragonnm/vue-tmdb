@@ -35,6 +35,8 @@
         <h1>{{ props.movie.title }}</h1>
         <h3>PLOT</h3>
         <p>{{ props.movie.overview }}</p>
+        <h3>RELEASED ON</h3>
+        <p>{{ props.movie.release_date }}</p>
 
         <div class="rating-director">
           <div>
